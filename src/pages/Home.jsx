@@ -1,3 +1,7 @@
+import { emojiCursor } from "cursor-effects";
+import me from '../assets/me.png';
+new emojiCursor({ emoji: ["💗"] });
+
 const projects = [
   {
     title: 'Yuro',
@@ -34,6 +38,19 @@ const personalHighlights = [
   'I have a deep connection to the ocean. sailing is my favorite way to recharge and stay inspired.',
 ]
 
+const cvSkillChips = [
+  'C#',
+  'TypeScript',
+  'JavaScript',
+  'React',
+  'Angular',
+  'Unity',
+  'Java',
+  'System design',
+  'Git',
+  'Cursor',
+]
+
 const navItems = [
   { id: 'about', label: 'About' },
   { id: 'projects', label: 'Projects' },
@@ -41,12 +58,12 @@ const navItems = [
   { id: 'cv', label: 'CV' },
 ]
 
-const profileImageUrl = '/profile.jpg'
+const profileImageUrl = me
 
 export const Home = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-20 border-b border-border/70 bg-background/95 backdrop-blur">
+    <div className="y2k-glitter-bg min-h-screen text-foreground">
+      <header className="y2k-header-pink sticky top-0 z-20">
         <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
           <a href="#about" className="text-lg font-bold text-primary">
             Inbal Nitzani
@@ -68,7 +85,7 @@ export const Home = () => {
       </header>
 
       <main className="mx-auto flex max-w-5xl flex-col gap-12 px-4 py-10 sm:py-14">
-        <section id="about" className="scroll-mt-24 rounded-xl border border-border bg-card p-6 sm:p-8">
+        <section id="about" className="scroll-mt-24 py-2">
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
             <div className="max-w-2xl">
               <p className="mb-2 text-sm font-medium text-primary">About</p>
@@ -92,7 +109,7 @@ export const Home = () => {
                 </a>
                 <a
                   href="#cv"
-                  className="rounded-md border border-border px-4 py-2 text-sm font-semibold transition hover:bg-primary/10"
+                  className="y2k-glass-btn rounded-md px-4 py-2 text-sm font-semibold transition"
                 >
                   Open CV Section
                 </a>
@@ -102,32 +119,31 @@ export const Home = () => {
             <img
               src={profileImageUrl}
               alt="Portrait of Inbal Nitzani"
-              className="h-52 w-52 shrink-0 rounded-2xl border border-border/70 object-cover shadow-sm sm:h-60 sm:w-60"
+              className="y2k-game-cover h-52 w-52 shrink-0 cursor-default rounded-2xl object-cover sm:h-60 sm:w-60"
             />
           </div>
         </section>
 
         <section id="projects" className="scroll-mt-24">
           <p className="mb-2 text-sm font-medium text-primary">Projects</p>
-          <h2 className="text-2xl font-bold sm:text-3xl">Things I built</h2>
 
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
+          <div className="mt-5 grid gap-10 md:grid-cols-2 md:gap-12">
             {projects.map((project) => (
-              <article key={project.title} className="rounded-xl border border-border bg-card p-5">
+              <article key={project.title} className="min-w-0">
                 <img
                   src={project.imageUrl}
                   alt={`${project.title} cover`}
-                  className="h-44 w-full rounded-lg border border-border/70 object-cover"
+                  className="y2k-game-cover h-44 w-full rounded-lg object-cover"
                   loading="lazy"
                 />
-                <h3 className="mt-4 text-xl font-semibold">{project.title}</h3>
+                <h3 className="mt-4 text-xl font-semibold text-primary">{project.title}</h3>
                 <p className="mt-2 text-sm text-foreground/80">{project.description}</p>
 
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {project.stack.map((tech) => (
                     <li
                       key={`${project.title}-${tech}`}
-                      className="rounded-full border border-border px-2 py-1 text-xs text-foreground/80"
+                      className="y2k-glass-pill rounded-full px-2.5 py-0.5 text-xs"
                     >
                       {tech}
                     </li>
@@ -136,7 +152,7 @@ export const Home = () => {
 
                 <div className="mt-5 flex gap-3 text-sm font-medium">
                   <a href={project.demoUrl} className="text-primary hover:underline">
-                    Live Demo
+                    Play
                   </a>
                   <a href={project.githubUrl} className="text-primary hover:underline">
                     GitHub
@@ -147,40 +163,107 @@ export const Home = () => {
           </div>
         </section>
 
-        <section id="personal" className="scroll-mt-24 rounded-xl border border-border bg-card p-6 sm:p-8">
+        <section id="personal" className="scroll-mt-24 border-t border-pink-200/50 py-2 pt-10">
           <p className="mb-2 text-sm font-medium text-primary">Personal</p>
-          <h2 className="text-2xl font-bold sm:text-3xl">A little more about me</h2>
+          <h2 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
+            When I log off, I go{' '}
+            <span className="bg-gradient-to-r from-fuchsia-600 to-pink-500 bg-clip-text text-transparent">
+              outside
+            </span>
+          </h2>
 
-          <ul className="mt-4 space-y-3 text-foreground/85">
-            {personalHighlights.map((item) => (
-              <li key={item} className="rounded-lg border border-border/70 p-3">
-                {item}
+          <ul className="mt-8 grid list-none gap-4 sm:grid-cols-3 sm:gap-5">
+            {personalHighlights.map((item, i) => (
+              <li
+                key={item}
+                className={`y2k-personal-tile group relative p-4 sm:p-5 ${i === 1 ? 'sm:translate-y-3' : ''}`}
+              >
+                <p className="relative z-10 text-sm leading-relaxed text-foreground/85 sm:text-base">{item}</p>
               </li>
             ))}
           </ul>
         </section>
 
-        <section id="cv" className="scroll-mt-24 rounded-xl border border-border bg-card p-6 sm:p-8">
+        <section id="cv" className="scroll-mt-24 border-t border-pink-200/50 py-2 pt-10">
           <p className="mb-2 text-sm font-medium text-primary">CV</p>
-          <h2 className="text-2xl font-bold sm:text-3xl">Curriculum Vitae</h2>
-          <p className="mt-3 max-w-2xl text-foreground/80">
-            Add your education, experience, and skills summary here. You can also attach your full
-            resume as a PDF and link to it below.
-          </p>
+          <h2 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
+          The {' '}
+            <span className="bg-gradient-to-r from-fuchsia-600 to-pink-500 bg-clip-text text-transparent">
+            Short n' Sweet            </span>
+             Version
+          </h2>
 
-          <div className="mt-6 flex flex-wrap gap-3">
+
+          <div className="mt-8 max-w-3xl space-y-8 text-foreground/85">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-2 sm:text-sm">
+              <span className="y2k-glass-pill w-fit rounded-full px-3 py-1 text-xs font-medium">
+                Tel Aviv · Israel
+              </span>
+              <a
+                href="mailto:inbalnitzani@gmail.com"
+                className="y2k-glass-pill w-fit rounded-full px-3 py-1 text-xs font-medium transition hover:opacity-90"
+              >
+                inbalnitzani@gmail.com
+              </a>
+              <a
+                href="https://www.linkedin.com/in/inbal-nitzani-07851421b/"
+                className="y2k-glass-pill w-fit rounded-full px-3 py-1 text-xs font-medium transition hover:opacity-90"
+              >
+                LinkedIn
+              </a>
+            </div>
+
+            <p className="text-base leading-relaxed text-foreground/90 sm:text-lg">
+              <span className="font-semibold text-primary">Software Engineer</span> building serious systems at{' '}
+              <span className="font-semibold text-foreground">Whalo</span>, and an{' '}
+              <span className="font-semibold text-foreground">M.Des</span> student at Shenkar—bridging full-stack
+              craft with play, physics, and weird game ideas in Unity.
+            </p>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="border-l-2 border-primary/50 pl-4">
+                <p className="text-xs font-bold uppercase tracking-wide text-primary">Now</p>
+                <p className="mt-1 font-semibold text-foreground">Whalo · Software Engineer</p>
+                <p className="text-sm text-foreground/75">Gaming world infrastructure &amp; internal tools</p>
+                <p className="mt-3 font-semibold text-foreground">Shenkar · M.Des</p>
+                <p className="text-sm text-foreground/75">Game design and development.</p>
+              </div>
+              <div className="border-l-2 border-pink-300/60 pl-4">
+                <p className="text-xs font-bold uppercase tracking-wide text-primary">Before</p>
+                <p className="mt-1 font-semibold text-foreground">NanoLock · Software Engineer</p>
+                <p className="text-sm text-foreground/75">User-facing product work in cybersecurity.</p>
+                <p className="mt-2 font-semibold text-foreground">NanoLock · QA</p>
+                <p className="text-sm text-foreground/75">Hardening releases &amp; catching the scary stuff.</p>
+                <p className="mt-3 font-semibold text-foreground">B.Sc. CS · MTA · 2023</p>
+              </div>
+            </div>
+
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wide text-primary">Skill constellation</p>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {cvSkillChips.map((label) => (
+                  <li key={label} className="y2k-glass-pill rounded-full px-2.5 py-1 text-xs">
+                    {label}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-2 text-sm text-foreground/70">Hebrew · English · Italian (beginner) </p>
+            </div>
+
+            <p className="text-sm text-foreground/80">
+              <span className="font-semibold text-foreground">Etgarim</span> volunteer sailing, accessibility,
+              and good energy on the water.
+            </p>
+          </div>
+
+          <div className="mt-10 flex flex-wrap gap-3">
             <a
               href="#"
               className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90"
             >
-              Download CV (PDF)
+              Download full CV (PDF)
             </a>
-            <a
-              href="mailto:youremail@example.com"
-              className="rounded-md border border-border px-4 py-2 text-sm font-semibold transition hover:bg-primary/10"
-            >
-              Contact Me
-            </a>
+  
           </div>
         </section>
       </main>
