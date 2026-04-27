@@ -32,7 +32,7 @@ const projects = [
     title: 'Nitzami Muisc',
     description:
       'Music IP Management Website',
-    imageUrl: 'https://img.itch.zone/aW1nLzI0NDU5OTU3LnBuZw==/347x500/kzzgy%2B.png',
+    imageUrl: 'https://nitzanimusic.netlify.app/assets/logo-PChokhoe.png',
     stack: ['React', 'Tailwind CSS', 'Supabase'],
     demoUrl: 'https://nitzanimusic.netlify.app/',
     githubUrl: 'https://github.com/inbalnitzani/Nitzani-Music',
