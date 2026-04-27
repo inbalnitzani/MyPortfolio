@@ -28,7 +28,15 @@ const projects = [
     imageUrl: 'https://img.itch.zone/aW1nLzI0NDU5OTU3LnBuZw==/347x500/kzzgy%2B.png',
     stack: ['Unity', 'C#'],
     demoUrl: 'https://inbalnitzani.itch.io/basketball',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/inbalnitzani/Basketball',
+  },  {
+    title: 'Nitzami Muisc',
+    description:
+      'Music IP Management Website',
+    imageUrl: 'https://img.itch.zone/aW1nLzI0NDU5OTU3LnBuZw==/347x500/kzzgy%2B.png',
+    stack: ['React', 'Tailwind CSS', 'Supabase'],
+    demoUrl: 'https://nitzanimusic.netlify.app/',
+    githubUrl: 'https://github.com/inbalnitzani/Nitzani-Music',
   },
 ]
 
