@@ -7,24 +7,15 @@ import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // https://vite.dev/config/
-// Production: relative base so JS/CSS work at https://<user>.github.io/<any-repo>/
-// without hard-coding the repo name. The router basename is set at runtime in App.jsx.
-// export default defineConfig(({ command }) => ({
-//   base: command === 'build' ? './' : '/',
-//   plugins: [react(), tailwindcss()],
-//   resolve: {
-//     alias: {
-//       '@': path.resolve(__dirname, './src'),
-//     },
-//   },
-// }))
+// Dev: base "/" so http://localhost:5173/ works. Build: match GitHub Project Pages path.
+const GITHUB_PAGES_REPO = 'MyPortfolio'
 
-export default defineConfig({
-  base: '/MyPortfolio/', 
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? `/${GITHUB_PAGES_REPO}/` : '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
   },
-})
+}))
