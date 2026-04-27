@@ -1,6 +1,5 @@
-import { emojiCursor } from "cursor-effects";
-import me from '../assets/me.png';
-new emojiCursor({ emoji: ["💗"] });
+import { useEffect } from 'react'
+import me from '../assets/me.png'
 
 const projects = [
   {
@@ -69,6 +68,14 @@ const navItems = [
 const profileImageUrl = me
 
 export const Home = () => {
+  useEffect(() => {
+    import('cursor-effects')
+      .then(({ emojiCursor }) => {
+        new emojiCursor({ emoji: ['💗'] })
+      })
+      .catch(() => {})
+  }, [])
+
   return (
     <div className="y2k-glitter-bg min-h-screen text-foreground">
       <header className="y2k-header-pink sticky top-0 z-20">

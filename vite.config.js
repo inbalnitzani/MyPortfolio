@@ -7,11 +7,9 @@ import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // https://vite.dev/config/
-// Dev: base "/" so http://localhost:5173/ works. Build: match GitHub Project Pages path.
-const GITHUB_PAGES_REPO = 'MyPortfolio'
-
+// Dev: "/". Build: relative "./" so JS/CSS resolve on GitHub Pages under any repo name/path.
 export default defineConfig(({ command }) => ({
-  base: command === 'build' ? `/${GITHUB_PAGES_REPO}/` : '/',
+  base: command === 'build' ? './' : '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

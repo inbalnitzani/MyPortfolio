@@ -2,11 +2,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { NotFound } from './pages/NotFound'
 
-/** Must stay aligned with `base` in vite.config.js (same subpath as GitHub Pages URL). */
+/** GitHub Pages serves the app at /<repo>/ — basename comes from the URL (works with relative asset base). */
 function getRouterBasename() {
-  const base = import.meta.env.BASE_URL
-  if (!base || base === '/' || base === './') return undefined
-  return base.replace(/\/$/, '') || undefined
+  if (typeof window === 'undefined') return undefined
+  let path = window.location.pathname
+  if (path !== '/' && path.endsWith('/')) path = path.slice(0, -1)
+  path = path.replace(/\/index\.html$/i, '')
+  if (!path || path === '/') return undefined
+  return path
 }
 
 const routerBasename = getRouterBasename()
